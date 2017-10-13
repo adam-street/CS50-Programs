@@ -1,0 +1,4 @@
+0. DIM_MIN (3x3) to DIM_MAX (9x9)
+1. 2d array
+2. greet();
+3. init(); \ draw(); \ move(); \ won();

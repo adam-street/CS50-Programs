@@ -1,0 +1,54 @@
+0.  A pneumoconiosis caused by inhalation of very fine silicate or quartz dust
+
+1.  getrusage()  returns  resource usage measures for who, which can be one of the fol‐
+       lowing:
+
+       RUSAGE_SELF
+              Return resource usage statistics for the calling process, which is  the  sum
+              of resources used by all threads in the process.
+
+       RUSAGE_CHILDREN
+              Return  resource  usage  statistics  for all children of the calling process
+              that have terminated and been waited for.  These statistics will include the
+              resources  used by grandchildren, and further removed descendants, if all of
+              the intervening descendants waited on their terminated children.
+
+       RUSAGE_THREAD (since Linux 2.6.26)
+              Return resource usage statistics for the calling thread.
+
+2.  struct rusage
+    {
+       struct timeval ru_utime; /* user CPU time used */
+       struct timeval ru_stime; /* system CPU time used */
+       long   ru_maxrss;        /* maximum resident set size */
+       long   ru_ixrss;         /* integral shared memory size */
+       long   ru_idrss;         /* integral unshared data size */
+       long   ru_isrss;         /* integral unshared stack size */
+       long   ru_minflt;        /* page reclaims (soft page faults) */
+       long   ru_majflt;        /* page faults (hard page faults) */
+       long   ru_nswap;         /* swaps */
+       long   ru_inblock;       /* block input operations */
+       long   ru_oublock;       /* block output operations */
+       long   ru_msgsnd;        /* IPC messages sent */
+       long   ru_msgrcv;        /* IPC messages received */
+       long   ru_nsignals;      /* signals received */
+       long   ru_nvcsw;         /* voluntary context switches */
+       long   ru_nivcsw;        /* involuntary context switches */
+    };
+
+3.  Before and after are structs and are slow to pass by value.
+    If we pass a reference then the calcualte function has acess
+    to the same information with alot less computational cost.
+
+4. Main uses fgetc to read the next character in the file and move the
+   pointer with it. Using this with a loop that terminates on the EOF character
+   creates a loop that reads a file character by character until it reaches the
+   end of the file. After it reads the character it checks that it is a aplha character
+   or an apostrophe and then appends the character to the end of the word char array.
+   If the loop reaches a space or punctuation we add a null terminator the the word array.
+
+5.  fscanf will include any character that is not whitespace or a newline.
+    So using this would cause punctuation to be included in the words we are checking.
+
+6.  A const is not changeable. check and load function take a const to make sure we
+    do not change the word we are checking or the dictionary we are checking from.
